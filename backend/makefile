@@ -24,8 +24,11 @@ m_down:
 	# run migrate down
 	migrate -path db/migrations -database "postgres://root:secret@localhost:5432/fingreat_db?sslmode=disable" down $(count)
 
-sqlc:
-	sqlc generate
+sqlc_docker:
+	docker pull sqlc/sqlc
+
+sqlc_docker_run:
+	docker run --rm -v "Z:\fintechApp\backend:/src" -w /src sqlc/sqlc generate
 
 start:
 	CompileDaemon -command="./fingreat_backend"
