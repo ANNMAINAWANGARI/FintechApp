@@ -3,17 +3,24 @@ package db_test
 import (
 	"database/sql"
 	db "github/ANNMAINAWANGARI/FintechApp/db/sqlc"
+	"github/ANNMAINAWANGARI/FintechApp/utils"
 	"log"
 	"os"
 	"testing"
+
 	_ "github.com/lib/pq"
 )
 
 
 var testQuery *db.Queries
+const sslmode = "?sslmode=disable"
 
 func TestMain(m *testing.M){
-	conn, err:= sql.Open("postgres","postgres://root:secret@localhost:5432/fingreat_db?sslmode=disable")
+	config, err := utils.LoadConfig("../..")
+	if err != nil {
+		log.Fatal("Could not load env config", err)
+	}
+	conn, err := sql.Open(config.DBdriver, config.DB_source+sslmode)
 	if err != nil{
 		log.Fatal("Could not connect to db",err)
 	}

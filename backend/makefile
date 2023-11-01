@@ -12,17 +12,21 @@ p_down:
 
 db_up:
 	docker exec -it fingreat_postgres createdb --username=root --owner=root fingreat_db
+	docker exec -it fingreat_postgres_live createdb --username=root --owner=root fingreat_db
 
 db_down:
 	docker exec -it fingreat_postgres dropdb --username=root fingreat_db
+	docker exec -it fingreat_postgres_live dropdb --username=root fingreat_db
 
 m_up:
 	# run migrate up
-	migrate -path db/migrations -database "postgres://root:secret@localhost:5432/fingreat_db?sslmode=disable" up 
+	migrate -path db/migrations -database "postgres://root:secret@localhost:5432/fingreat_db?sslmode=disable" up
+	migrate -path db/migrations -database "postgres://root:secret@localhost:5433/fingreat_db?sslmode=disable" up  
 
 m_down:
 	# run migrate down
 	migrate -path db/migrations -database "postgres://root:secret@localhost:5432/fingreat_db?sslmode=disable" down $(count)
+	migrate -path db/migrations -database "postgres://root:secret@localhost:5433/fingreat_db?sslmode=disable" down $(count)
 
 sqlc_docker:
 	docker pull sqlc/sqlc
@@ -31,7 +35,7 @@ sqlc_docker_run:
 	docker run --rm -v "Z:\fintechApp\backend:/src" -w /src sqlc/sqlc generate
 
 start:
-	CompileDaemon -command="./fingreat_backend"
+	CompileDaemon -command="./FintechApp"
 
 test:
 	go test -v -cover ./...

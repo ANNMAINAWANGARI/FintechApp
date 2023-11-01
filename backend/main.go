@@ -1,8 +1,10 @@
 package main
 
-
-import "fmt"
+import (
+	"github/ANNMAINAWANGARI/FintechApp/api"
+)
 
 func main() {
-	fmt.Println("Golang Fintech App")
+	server := api.NewServer(".")
+	server.Start(8000)
 }
