@@ -17,6 +17,7 @@ type Server struct {
 	queries *db.Queries
 	router  *gin.Engine
 	config  *utils.Config
+	
 }
 
 
@@ -38,6 +39,7 @@ func NewServer(envPath string) *Server{
 	if err != nil {
 		panic(fmt.Sprintf("Could not connect to database: %v", err))
 	}
+	
 	tokenController = utils.NewJWTToken(config)
 
 	q:= db.New(conn)
