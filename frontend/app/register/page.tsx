@@ -7,7 +7,7 @@ type pageProps = {
     
 };
 
-const Login:React.FC<pageProps> = () => {
+const Register:React.FC<pageProps> = () => {
     const [loading, SetLoading] = useState(false);
     const onSubmit =async(
         e: FormEvent<HTMLFormElement>,
@@ -24,10 +24,15 @@ const Login:React.FC<pageProps> = () => {
     }
     
     return  <Auth
-     loading={loading} 
-     showRemembered
-     title="Log In"
-     buttonTitle = "Login"
-     onSubmit={onSubmit} />;
+     loading={loading}
+     title="Sign Up"
+     buttonTitle = "Register"
+     onSubmit={onSubmit}
+     accountInfoText={{
+        initialText:"Have an account",
+        actionLink:"/login",
+        actionText:"Login"
+     }}
+     />;
 }
-export default Login;
+export default Register;
