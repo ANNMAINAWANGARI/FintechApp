@@ -8,3 +8,6 @@ This project was bootstrapped with [Next.js](https://nextjs.org/) and [Go](https
 
 ### LoginPage
 ![LoginPage](/frontend/public/Loginpage.png)
+
+### RegisterPage
+![RegisterPage](/frontend/public/Registerpage.png)
