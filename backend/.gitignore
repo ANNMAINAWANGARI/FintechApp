@@ -2,6 +2,7 @@
 FintechApp
 /.vscode
 .env
+
 *.exe~
 *.exe
 */bin/*

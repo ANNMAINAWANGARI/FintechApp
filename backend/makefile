@@ -34,6 +34,9 @@ sqlc_docker:
 sqlc_docker_run:
 	docker run --rm -v "Z:\fintechApp\backend:/src" -w /src sqlc/sqlc generate
 
+sqlc_generate:
+	docker run --rm -v $(CURDIR):/src -w /src sqlc/sqlc generate
+
 start:
 	CompileDaemon -command="./FintechApp"
 

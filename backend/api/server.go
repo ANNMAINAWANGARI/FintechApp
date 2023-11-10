@@ -16,7 +16,7 @@ import (
 
 
 type Server struct {
-	queries *db.Queries
+	queries *db.Store
 	router  *gin.Engine
 	config  *utils.Config
 	
@@ -44,7 +44,7 @@ func NewServer(envPath string) *Server{
 	
 	tokenController = utils.NewJWTToken(config)
 
-	q:= db.New(conn)
+	q:= db.NewStore(conn)
 	g := gin.Default()
 	g.Use(cors.Default())
 

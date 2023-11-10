@@ -12,7 +12,7 @@ import (
 )
 
 
-var testQuery *db.Queries
+var testQuery *db.Store
 const sslmode = "?sslmode=disable"
 
 func TestMain(m *testing.M){
@@ -24,6 +24,6 @@ func TestMain(m *testing.M){
 	if err != nil{
 		log.Fatal("Could not connect to db",err)
 	}
-	testQuery = db.New(conn)
+	testQuery = db.NewStore(conn)
 	os.Exit(m.Run())
 }
