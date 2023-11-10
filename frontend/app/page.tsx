@@ -1,7 +1,10 @@
+'use client'
 import Image from 'next/image'
+import MainLayout from './components/MainLayout'
 
 export default function Home() {
   return (
+    
     <main className="flex min-h-screen flex-col px-16 py-5 font-bold justify-between bg-black text-white">
       <div className='text-2xl subpixel-antialiased tracking-wide'>FinTech </div>
       <section className='flex flex-col items-center justify-items-center mt-20 gap-3'>
@@ -18,5 +21,6 @@ export default function Home() {
             />
       </section>
     </main>
+    
   )
 }

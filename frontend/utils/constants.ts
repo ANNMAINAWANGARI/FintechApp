@@ -1,0 +1,1 @@
+export const userTokenKey = "fintech user token"

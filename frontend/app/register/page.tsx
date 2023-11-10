@@ -7,6 +7,7 @@ import axios, { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { errorHandler } from '@/utils/errorHandler';
+import withoutAuth from '../hocs/withoutAuth';
 
 type pageProps = {
     
@@ -51,4 +52,4 @@ const Register:React.FC<pageProps> = () => {
      }}
      />;
 }
-export default Register;
+export default withoutAuth(Register);
