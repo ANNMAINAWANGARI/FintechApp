@@ -6,10 +6,11 @@ import (
 	db "github/ANNMAINAWANGARI/FintechApp/db/sqlc"
 	"github/ANNMAINAWANGARI/FintechApp/utils"
 	"net/http"
-	
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
+	"github.com/go-playground/validator/v10"
 	"github.com/golodash/galidator"
 	_ "github.com/lib/pq"
 )
@@ -30,6 +31,13 @@ var gValid = galidator.New().CustomMessages(
 	},
 )
 
+func myCorsHandler() gin.HandlerFunc {
+	config := cors.DefaultConfig()
+	config.AllowAllOrigins = true
+	config.AllowHeaders = append(config.AllowHeaders, "Authorization")
+	return cors.New(config)
+}
+
 func NewServer(envPath string) *Server{
 
 	config, err := utils.LoadConfig(envPath)
@@ -46,7 +54,10 @@ func NewServer(envPath string) *Server{
 
 	q:= db.NewStore(conn)
 	g := gin.Default()
-	g.Use(cors.Default())
+	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
+		v.RegisterValidation("currency", currencyValidator)
+	}
+	g.Use(myCorsHandler())
 
 	return &Server{
 		queries: q,
@@ -65,6 +76,7 @@ func (s *Server) Start(port int) {
     
 	User{}.router(s)
 	Auth{}.router(s)
+	Account{}.router(s)
 
 	s.router.Run(fmt.Sprintf(":%v", port))
 }

@@ -150,7 +150,7 @@ func (a *Account) transfer(c *gin.Context) {
 
 	c.JSON(http.StatusCreated, tx)
 }
-
+//deposit money
 type AddMoneyRequest struct {
 	ToAccountID int64   `json:"to_account_id" binding:"required"`
 	Amount      float64 `json:"amount" binding:"required"`

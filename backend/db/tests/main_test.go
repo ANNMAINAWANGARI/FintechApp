@@ -20,7 +20,7 @@ func TestMain(m *testing.M){
 	if err != nil {
 		log.Fatal("Could not load env config", err)
 	}
-	conn, err := sql.Open(config.DBdriver, config.DB_source+sslmode)
+	conn, err := sql.Open(config.DBdriver, config.DB_source_live+sslmode)
 	if err != nil{
 		log.Fatal("Could not connect to db",err)
 	}
