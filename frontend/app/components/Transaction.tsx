@@ -4,8 +4,11 @@ type TransactionProps = {
     
 };
 
+//todo: create transaction logs in a table
+
+
 const Transaction:React.FC<TransactionProps> = () => {
     
-    return <div>Have a good coding</div>
+    return <div>logs</div>
 }
 export default Transaction;

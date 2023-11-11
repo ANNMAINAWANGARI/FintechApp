@@ -20,7 +20,7 @@ const usePaystack = ({amount, currency}: MyPaystackProps) => {
         amount: amount * 100,
         currency,
         publicKey: TestPublicKey as string,
-        label: "Fingreat Payment"
+        label: "FinTech Payment"
     })
 
     return {
